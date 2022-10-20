@@ -96,7 +96,16 @@ defmodule IntervalOps do
   end
 
   def is_subset(intervals_1, intervals_2) do
-    true
+    intervals_1 = expand(intervals_1)
+    intervals_2 = expand(intervals_2)
+    m1 = MapSet.new(intervals_1)
+    m2 = MapSet.new(intervals_2)
+    m3 = MapSet.subset?(m1, m2)
+    if m3 == true do
+      true
+    else
+      false
+    end
   end
 
 end
