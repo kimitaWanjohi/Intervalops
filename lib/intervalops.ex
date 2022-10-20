@@ -78,7 +78,10 @@ defmodule IntervalOps do
   end
 
   def difference(intervals_1, intervals_2) do
-    ""
+    intervals_1 = expand(intervals_1)
+    intervals_2 = expand(intervals_2)
+    intervals = intervals_1 -- intervals_2
+    collapse(intervals)
   end
 
   def is_disjoint(intervals_1, intervals_2) do

@@ -1,6 +1,6 @@
 defmodule Learn do
   def main do
-    difference("1-5,7-9","4-8")
+    is_disjoint("4-6,10-12,16","1,3-5,12-14")
   end
 
   def expand(intervals) do
@@ -73,9 +73,16 @@ defmodule Learn do
     collapse(intervals)
   end
 
-  # def is_disjoint(intervals_1, intervals_2) do
-  #   true
-  # end
+  def is_disjoint(intervals_1, intervals_2) do
+    intervals_1 = expand(intervals_1)
+    intervals_2 = expand(intervals_2)
+    intervals = intervals_1 -- intervals_2
+    if intervals == intervals_1 do
+      true
+    else
+      false
+    end
+  end
 
   # def is_subset(intervals_1, intervals_2) do
   #   true
