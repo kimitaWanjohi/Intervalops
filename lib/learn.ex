@@ -1,6 +1,6 @@
 defmodule Learn do
   def main do
-    collapse([1,2,4,5,6,8,9,12])
+    union("4-6,10-12,16","1,3-5,12-14")
   end
 
   def expand(intervals) do
@@ -48,9 +48,14 @@ defmodule Learn do
     end
   end
 
-  # def union(intervals_1, intervals_2) do
-  #   ""
-  # end
+  def union(intervals_1, intervals_2) do
+    intervals_1 = expand(intervals_1)
+    intervals_2 = expand(intervals_2)
+    intervals = intervals_1 ++ intervals_2
+    intervals = Enum.sort(intervals)
+    intervals = Enum.uniq(intervals)
+    collapse(intervals)
+  end
 
   # def intersection(intervals_1, intervals_2) do
   #   ""

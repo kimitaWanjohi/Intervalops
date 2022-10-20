@@ -34,7 +34,29 @@ defmodule IntervalOps do
   end
 
   def collapse(items) do
-    ""
+    if items == [] do
+      ""
+    else
+      chunk_fun = fn
+        elem, [] -> {:cont, [elem]}
+        elem, [prev | _] = acc when prev + 1 == elem -> {:cont, [elem | acc]}
+        elem, acc -> {:cont, Enum.reverse(acc), [elem]}
+      end
+      after_fun = fn
+       [] -> {:cont, []}
+       acc -> {:cont, Enum.reverse(acc), []}
+      end
+      items = Enum.chunk_while(items, [], chunk_fun, after_fun)
+      items = Enum.map(items, fn item ->
+        if length(item) == 1 do
+          "#{List.last(item)}"
+        else
+          "#{List.first(item)}-#{List.last(item)}"
+        end
+      end)
+      items = Enum.join(items, ",")
+      items
+    end
   end
 
   def union(intervals_1, intervals_2) do
