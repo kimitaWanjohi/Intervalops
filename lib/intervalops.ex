@@ -60,7 +60,12 @@ defmodule IntervalOps do
   end
 
   def union(intervals_1, intervals_2) do
-    ""
+    intervals_1 = expand(intervals_1)
+    intervals_2 = expand(intervals_2)
+    intervals = intervals_1 ++ intervals_2
+    intervals = Enum.sort(intervals)
+    intervals = Enum.uniq(intervals)
+    collapse(intervals)
   end
 
   def intersection(intervals_1, intervals_2) do

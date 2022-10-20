@@ -1,6 +1,6 @@
 defmodule Learn do
   def main do
-    union("4-6,10-12,16","1,3-5,12-14")
+    intersection("2,4,6","1,3,5")
   end
 
   def expand(intervals) do
@@ -57,9 +57,14 @@ defmodule Learn do
     collapse(intervals)
   end
 
-  # def intersection(intervals_1, intervals_2) do
-  #   ""
-  # end
+  def intersection(intervals_1, intervals_2) do
+    intervals_1 = expand(intervals_1)
+    intervals_2 = expand(intervals_2)
+    m1 = MapSet.new(intervals_1)
+    m2 = MapSet.new(intervals_2)
+    m3 = MapSet.intersection(m1, m2)
+    collapse(MapSet.to_list(m3))
+  end
 
   # def difference(intervals_1, intervals_2) do
   #   ""
