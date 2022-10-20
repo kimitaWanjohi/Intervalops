@@ -85,7 +85,14 @@ defmodule IntervalOps do
   end
 
   def is_disjoint(intervals_1, intervals_2) do
-    true
+    intervals_1 = expand(intervals_1)
+    intervals_2 = expand(intervals_2)
+    intervals = intervals_1 -- intervals_2
+    if intervals == intervals_1 do
+      true
+    else
+      false
+    end
   end
 
   def is_subset(intervals_1, intervals_2) do

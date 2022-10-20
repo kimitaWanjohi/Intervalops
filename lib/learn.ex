@@ -1,6 +1,6 @@
 defmodule Learn do
   def main do
-    is_disjoint("4-6,10-12,16","1,3-5,12-14")
+    is_subset("1-5,7-9","1-9")
   end
 
   def expand(intervals) do
@@ -84,8 +84,17 @@ defmodule Learn do
     end
   end
 
-  # def is_subset(intervals_1, intervals_2) do
-  #   true
-  # end
+  def is_subset(intervals_1, intervals_2) do
+    intervals_1 = expand(intervals_1)
+    intervals_2 = expand(intervals_2)
+    m1 = MapSet.new(intervals_1)
+    m2 = MapSet.new(intervals_2)
+    m3 = MapSet.subset?(m1, m2)
+    if m3 == true do
+      true
+    else
+      false
+    end
+  end
 
 end
