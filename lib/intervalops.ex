@@ -69,7 +69,12 @@ defmodule IntervalOps do
   end
 
   def intersection(intervals_1, intervals_2) do
-    ""
+    intervals_1 = expand(intervals_1)
+    intervals_2 = expand(intervals_2)
+    m1 = MapSet.new(intervals_1)
+    m2 = MapSet.new(intervals_2)
+    m3 = MapSet.intersection(m1, m2)
+    collapse(MapSet.to_list(m3))
   end
 
   def difference(intervals_1, intervals_2) do

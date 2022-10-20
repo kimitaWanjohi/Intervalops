@@ -1,6 +1,6 @@
 defmodule Learn do
   def main do
-    intersection("2,4,6","1,3,5")
+    difference("1-5,7-9","4-8")
   end
 
   def expand(intervals) do
@@ -66,9 +66,12 @@ defmodule Learn do
     collapse(MapSet.to_list(m3))
   end
 
-  # def difference(intervals_1, intervals_2) do
-  #   ""
-  # end
+  def difference(intervals_1, intervals_2) do
+    intervals_1 = expand(intervals_1)
+    intervals_2 = expand(intervals_2)
+    intervals = intervals_1 -- intervals_2
+    collapse(intervals)
+  end
 
   # def is_disjoint(intervals_1, intervals_2) do
   #   true
